@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="add_Item">Add Item</string>
+    <string name="add_Text_Hint">Add Item Here...</string>
 </resources>
