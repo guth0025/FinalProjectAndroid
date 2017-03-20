@@ -15,7 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".Lamp1" />
+        <activity android:name=".Lamp2" />
+        <activity android:name=".Lamp3" />
+        <activity android:name=".Television" />
+        <activity android:name=".Blinds"></activity>
     </application>
 
 </manifest>
