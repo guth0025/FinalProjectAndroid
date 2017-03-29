@@ -15,6 +15,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HouseSettingMain" />
+        <activity android:name=".Garage" />
+        <activity android:name=".HouseTemp" />
+        <activity android:name=".Weather"></activity>
     </application>
 
 </manifest>
