@@ -1,9 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#273244"
     tools:context="guthboss.com.finalproject.Television">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/centerButton"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_center_button"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:id="@+id/downArrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_down_arrow"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:layout_below="@+id/centerButton"
+        android:layout_alignStart="@+id/upArrow"
+        android:layout_marginTop="15dp" />
+
+    <ImageButton
+        android:id="@+id/upArrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_up_arrow"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:layout_above="@+id/centerButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp" />
+
+    <ImageButton
+        android:id="@+id/leftArrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_left_arrow"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:layout_alignTop="@+id/rightArrow"
+        android:layout_toStartOf="@+id/centerButton"
+        android:layout_marginEnd="15dp" />
+
+
+    <ImageButton
+        android:id="@+id/rightArrow"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_right_arrow"
+        android:scaleType="fitCenter"
+        android:background="#0000"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/centerButton"
+        android:layout_marginStart="15dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/centerButton" />
+
+    <Button
+        android:id="@+id/channel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/channel"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/editText" />
+</RelativeLayout>
