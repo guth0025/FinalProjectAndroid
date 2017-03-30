@@ -7,7 +7,8 @@
     android:background="#273244"
     tools:context="guthboss.com.finalproject.Television">
 
-
+    <include android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"/>
     <ImageButton
         android:id="@+id/centerButton"
         android:layout_width="100dp"

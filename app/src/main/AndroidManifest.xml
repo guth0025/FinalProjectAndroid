@@ -9,22 +9,48 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".Smart_Kitchen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".Lamp1" />
-        <activity android:name=".Lamp2" />
-        <activity android:name=".Lamp3" />
-        <activity android:name=".Television" />
-        <activity android:name=".Blinds"></activity>
+        <activity
+            android:name=".Smart_Kitchen"
+            android:label="Smart Kitchen" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="Home Activity" />
+        <activity
+            android:name=".Lamp1"
+            android:label="Lamp 1" />
+        <activity
+            android:name=".Lamp2"
+            android:label="Lamp 2" />
+        <activity
+            android:name=".Lamp3"
+            android:label="Lamp 3" />
+        <activity
+            android:name=".Television"
+            android:label="Television" />
+        <activity
+            android:name=".Blinds"
+            android:label="Blinds" />
+        <activity
+            android:name=".Fridge"
+            android:label="Fridge" />
+        <activity
+            android:name=".ComingSoon"
+            android:label="Coming Soon" />
+        <activity
+            android:name=".Freezer"
+            android:label="Freezer" />
+        <activity
+            android:name=".Microwave"
+            android:label="Microwave" />
+        <activity android:name=".MainKitchenLight"
+            android:label="Kitchen Light"
+            ></activity>
     </application>
 
 </manifest>
