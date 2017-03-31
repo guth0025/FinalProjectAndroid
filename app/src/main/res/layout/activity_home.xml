@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="guthboss.com.finalproject.HomeActivity">
+    <include android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"/>
+    <Button
+        android:id="@+id/addItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/add_Item"
+        android:layout_below="@+id/HomeItems" />
+
+    <EditText
+        android:id="@+id/itemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/addItem"
+        android:ems="10"
+        android:hint="@string/add_Text_Hint"
+        android:inputType="textPersonName" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/itemText"
+        android:id="@+id/HomeItems"
+        android:layout_below="@+id/tool_bar" />
+</RelativeLayout>
