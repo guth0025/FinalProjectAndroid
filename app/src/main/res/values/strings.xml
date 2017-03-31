@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FinalProject</string>
+    <string name="house_setting">House Settings</string>
+    <string name="garage">Garage</string>
+    <string name="houseTemp">House Temparature</string>
+    <string name="weather">Weather</string>
+    <string name="garageDoor">Garage Door</string>
+    <string name="garageLight">Garage Lights</string>
 </resources>
