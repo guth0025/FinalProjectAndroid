@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".HouseSettingMain" />
+        <activity android:name=".Garage" />
+        <activity android:name=".HouseTemp" />
+        <activity android:name=".Weather"></activity>
+
         <activity
             android:name=".Smart_Kitchen"
             android:label="Smart Kitchen" />
@@ -51,6 +57,7 @@
         <activity android:name=".MainKitchenLight"
             android:label="Kitchen Light"
             ></activity>
+
     </application>
 
 </manifest>
