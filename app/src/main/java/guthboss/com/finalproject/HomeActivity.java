@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity {
     SQLiteDatabase db;
     Cursor cursor;
     ItemAdapter homeAdapter;
+    static boolean flExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,11 @@ public class HomeActivity extends AppCompatActivity {
         addItemText = (EditText)findViewById(R.id.itemText);
         addItemBtn = (Button)findViewById(R.id.addItem);
         items = (ListView)findViewById(R.id.HomeItems);
+
+        //Check for frameLayout - Tablet
+        flExists = (findViewById(R.id.frameLayout) != null);
+
+
 
 
 
@@ -79,30 +85,29 @@ public class HomeActivity extends AppCompatActivity {
                 //Don't have to move cursor. In correct position
                 //Because of the above method
                 position = (int) homeAdapter.getItemID(livingRoomItems.get(position));
-
-                switch(position){
-                    case 1: //Lamp 1
-                        startActivity(new Intent(ctx, Lamp1.class));
-                        break;
-                    case 2: //Lamp 2
-                        startActivity(new Intent(ctx, Lamp2.class));
-                        break;
-                    case 3: //Lamp 3
-                        startActivity(new Intent(ctx, Lamp3.class));
-                        break;
-                    case 4: // Television
-                        startActivity(new Intent(ctx, Television.class));
-                        break;
-                    case 5: //Blinds
-                       // ContentValues cv = new ContentValues();
-                       // cv.put(DatabaseHelper.TIMES_ACCESSED, cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TIMES_ACCESSED))+1);
-                       // Log.i("HomeActivity", "Times Accessed now = "+cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TIMES_ACCESSED)));
-                        startActivity(new Intent(ctx, Blinds.class));
-                        break;
-                    default: //For added items
-                        Toast toast = Toast.makeText(HomeActivity.this, "Item not yet implemented", Toast.LENGTH_LONG);
-                        toast.show();
-                }
+                        if(flExists){
+                            //Create a new bundle to pass and put in the position so we can
+                            //choose the right fragment layout
+                            Bundle bun = new Bundle();
+                            bun.putInt("position",position);
+                            LivingRoomFragment lvFragment = new LivingRoomFragment();
+                            lvFragment.setArguments(bun);
+                            android.app.Fragment frag = getFragmentManager().findFragmentByTag("OG_Fragment");
+                            if(frag instanceof LivingRoomFragment){
+                                //Replace old fragment w/new fragment
+                                getFragmentManager().beginTransaction().remove(frag).commit();
+                                getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
+                            }else{
+                                getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
+                            }
+                        } else{
+                            //TODO make this call the empty frame layout class
+                            startActivity(new Intent(ctx, Television.class));
+                        }
+                        if(position > 5){
+                            Toast toast = Toast.makeText(HomeActivity.this, "Item not yet implemented", Toast.LENGTH_LONG);
+                            toast.show();
+                        }
             }
         });
 
@@ -119,6 +124,7 @@ public class HomeActivity extends AppCompatActivity {
                 addItemText.setText("");
             }
         });
+
 
 
 
@@ -155,22 +161,13 @@ public class HomeActivity extends AppCompatActivity {
 
         }
         //Using the ID from the DB for the static items which are all
-        //added when DB is initially created, as they will all the same
-        //unique ID's
+        //added when DB is initially created, as they will all have a constant
+        //unique ID
         public long getItemID(String name){
             cursor = db.rawQuery("SELECT "+DatabaseHelper.KEY_ID+" FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" ='"+name+"'",null);
             cursor.moveToFirst();
             return cursor.getLong(cursor.getColumnIndex(DatabaseHelper.KEY_ID));
         }
-    }
-
-    @Override
-    public void onResume(){
-        String removedItem = livingRoomItems.get(2);
-        livingRoomItems.remove(2);
-        livingRoomItems.add(removedItem);
-        homeAdapter.notifyDataSetChanged();
-        super.onResume();
     }
 
 
