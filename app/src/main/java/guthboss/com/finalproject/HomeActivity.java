@@ -101,8 +101,10 @@ public class HomeActivity extends AppCompatActivity {
                                 getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
                             }
                         } else{
-                            //TODO make this call the empty frame layout class
-                            startActivity(new Intent(ctx, Television.class));
+                            //Call the empty frame Layout class (LivingRoomDetails)
+                            Intent intent = new Intent(HomeActivity.this, LivingRoomDetails.class);
+                            intent.putExtra("position",position);
+                            startActivity(intent);
                         }
                         if(position > 5){
                             Toast toast = Toast.makeText(HomeActivity.this, "Item not yet implemented", Toast.LENGTH_LONG);

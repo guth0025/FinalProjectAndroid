@@ -10,6 +10,11 @@ public class LivingRoomDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_living_room_details);
 
+        LivingRoomFragment lvFragment = new LivingRoomFragment();
+        Bundle bun = getIntent().getExtras();
+        lvFragment.setArguments(bun);
+        getFragmentManager().beginTransaction().add(R.id.livingFrag, lvFragment).commit();
+
 
     }
 }
