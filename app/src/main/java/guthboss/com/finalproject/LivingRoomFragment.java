@@ -24,13 +24,6 @@ public class LivingRoomFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
 
-        //Just testing to see if this works.
-        /*
-        TODO
-        implement different activities based on which ID comes in with the bundle.
-        Just use a basic conditional flow for this.
-        You can move the switch from the main to here instead
-         */
         switch(position){
             case 1: //Lamp 1
                 rootView = inflater.inflate(R.layout.activity_lamp1, container, false);

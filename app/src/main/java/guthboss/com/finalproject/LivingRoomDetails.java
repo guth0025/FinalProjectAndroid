@@ -16,5 +16,7 @@ public class LivingRoomDetails extends AppCompatActivity {
         getFragmentManager().beginTransaction().add(R.id.livingFrag, lvFragment).commit();
 
 
+
+
     }
 }

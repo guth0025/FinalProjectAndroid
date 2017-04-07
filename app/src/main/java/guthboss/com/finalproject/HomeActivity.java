@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     Cursor cursor;
     ItemAdapter homeAdapter;
     static boolean flExists;
+    //TODO inquire about snackbar
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,24 +57,28 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-
-
         //DATABASE
-        dbHelper = new DatabaseHelper(this);
+        dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
 
         //Execute Query for all items in DB w/Times accessed
-        cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"TimesAccessed","Item"}, null,null,null,null,null);
-        Log.i("HomeActivity","Cursor's column count= "+cursor.getColumnCount());
+//        cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"TimesAccessed","Item"}, null,null,null,null,null);
+//
+//        cursor.moveToFirst();
+//        while(!cursor.isAfterLast()){
+//            livingRoomItems.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
+//            Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
+//            Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
+//            cursor.moveToNext();
+//        }
+
+        DBAsyncTask dbAsyncTask = new DBAsyncTask();
+        dbAsyncTask.execute("any");
 
 
-        cursor.moveToFirst();
-        while(!cursor.isAfterLast()){
-            livingRoomItems.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
-            Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
-            //Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
-            cursor.moveToNext();
-        }
+
+        //DBAsyncTask dbTask = new DBAsyncTask();
+        //dbTask.execute("any");
 
         homeAdapter = new ItemAdapter(this);
         items.setAdapter(homeAdapter);
@@ -128,8 +136,52 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    //AsyncTask
+    class DBAsyncTask extends AsyncTask<String, Integer, String> {
+        ProgressBar dbProgress = (ProgressBar)findViewById(R.id.progressBar2);
+
+        @Override
+        protected String doInBackground(String... params) {
 
 
+            //Execute Query for all items in DB w/Times accessed
+            cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"TimesAccessed","Item"}, null,null,null,null,null);
+
+
+
+            int time = 100/cursor.getCount();
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast()){
+                SystemClock.sleep(1000);
+                publishProgress(time);
+                livingRoomItems.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
+                Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
+                //Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
+                cursor.moveToNext();
+                time+=time;
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... progress){
+            dbProgress.setVisibility(View.VISIBLE);
+            super.onProgressUpdate(progress);
+            dbProgress.setProgress(progress[0]);
+
+        }
+
+        @Override
+        protected void onPostExecute(String results){
+            //TODO set snackbar here with data retrieved message
+
+            //Needed in order to populate the List
+            homeAdapter.notifyDataSetChanged();
+            dbProgress.setVisibility(View.INVISIBLE);
+        }
     }
 
 
