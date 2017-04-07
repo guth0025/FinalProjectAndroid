@@ -1,7 +1,9 @@
 package guthboss.com.finalproject;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -61,19 +63,11 @@ public class HomeActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
 
-        //Execute Query for all items in DB w/Times accessed
-//        cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"TimesAccessed","Item"}, null,null,null,null,null);
-//
-//        cursor.moveToFirst();
-//        while(!cursor.isAfterLast()){
-//            livingRoomItems.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
-//            Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
-//            Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
-//            cursor.moveToNext();
-//        }
 
         DBAsyncTask dbAsyncTask = new DBAsyncTask();
         dbAsyncTask.execute("any");
+
+
 
 
 
@@ -176,11 +170,23 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String results){
-            //TODO set snackbar here with data retrieved message
-
             //Needed in order to populate the List
             homeAdapter.notifyDataSetChanged();
             dbProgress.setVisibility(View.INVISIBLE);
+
+
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+            builder.setTitle("Database Loaded");
+            builder.setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                }
+            });
+// Create the AlertDialog
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+
         }
     }
 
