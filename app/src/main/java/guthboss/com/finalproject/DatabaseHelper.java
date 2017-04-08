@@ -12,7 +12,7 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "projectDB";
-    public static final int VERSION_NUM = 2;
+    public static final int VERSION_NUM = 6;
     public static final String KEY_ID = "_id";
     public static final String TIMES_ACCESSED = "TimesAccessed";
     public static final String ON_OFF = "OnOff";
@@ -21,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String LIVING_ROOM_TABLE = "LivingRoomTable";
 
     //Must put in Default value of 0 to avoid null pointer
-    public static final String CREATE_TABLE_MESSAGE = "create table "+LIVING_ROOM_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ITEMS+" text, "+TIMES_ACCESSED+ " INTEGER DEFAULT 0, "+ON_OFF+" BOOLEAN, "+LAST_POSITION+" INTEGER DEFAULT 0);";
+    public static final String CREATE_TABLE_MESSAGE = "create table "+LIVING_ROOM_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ITEMS+" text, "+TIMES_ACCESSED+ " INTEGER DEFAULT 0, "+ON_OFF+" BOOLEAN DEFAULT TRUE, "+LAST_POSITION+" INTEGER DEFAULT 0);";
 
     public DatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
