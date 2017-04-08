@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="guthboss.com.finalproject">
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
 
     <application
         android:allowBackup="true"
@@ -15,12 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".HouseSettingMain" />
         <activity android:name=".Garage" />
         <activity android:name=".HouseTemp" />
-        <activity android:name=".Weather"></activity>
-
+        <activity android:name=".Weather" />
         <activity
             android:name=".Smart_Kitchen"
             android:label="Smart Kitchen" />
@@ -54,10 +54,10 @@
         <activity
             android:name=".Microwave"
             android:label="Microwave" />
-        <activity android:name=".MainKitchenLight"
-            android:label="Kitchen Light"
-            ></activity>
-
+        <activity
+            android:name=".MainKitchenLight"
+            android:label="Kitchen Light" />
+        <activity android:name=".LivingRoomDetails"></activity>
     </application>
 
 </manifest>

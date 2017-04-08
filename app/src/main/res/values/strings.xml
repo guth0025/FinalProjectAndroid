@@ -16,6 +16,9 @@
     <string name="lamp3_activity">Dimmable Light With Color Change</string>
     <string name="channel">Enter Channel</string>
     <string name="blinds_activity">Set Blinds</string>
+    <string name="notImplemented">Sorry, this feature is not yet implemented</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string-array name="colours">
         <item>Red</item>
         <item>Blue</item>

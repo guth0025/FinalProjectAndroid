@@ -11,10 +11,9 @@
         android:id="@+id/addItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:text="@string/add_Item"
-        android:layout_below="@+id/HomeItems" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/itemText"
@@ -26,15 +25,6 @@
         android:ems="10"
         android:hint="@string/add_Text_Hint"
         android:inputType="textPersonName" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/itemText"
-        android:id="@+id/HomeItems"
-        android:layout_below="@+id/progressBar2" />
-
     <ProgressBar
         android:id="@+id/progressBar2"
         style="?android:attr/progressBarStyleHorizontal"
@@ -43,4 +33,22 @@
         android:layout_below="@+id/tool_bar"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:id="@+id/HomeItems"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/itemText"
+        android:layout_alignEnd="@+id/addItem"
+        android:layout_below="@+id/progressBar2"
+        android:foregroundGravity="left" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tool_bar"
+        android:layout_toEndOf="@+id/HomeItems"
+        android:id="@+id/frameLayout">
+
+    </FrameLayout>
 </RelativeLayout>
