@@ -1,18 +1,16 @@
 package guthboss.com.finalproject;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     Cursor cursor;
     ItemAdapter homeAdapter;
     static boolean flExists;
-    //TODO inquire about snackbar
+    Snackbar snack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,26 +131,22 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     //AsyncTask
+    //Retrieve items from DB and populate the list
     class DBAsyncTask extends AsyncTask<String, Integer, String> {
         ProgressBar dbProgress = (ProgressBar)findViewById(R.id.progressBar2);
 
         @Override
         protected String doInBackground(String... params) {
-
-
             //Execute Query for all items in DB w/Times accessed
             cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"TimesAccessed","Item"}, null,null,null,null,null);
 
-
-
+            //Used to calculate the progress for progress bar
             int time = 100/cursor.getCount();
             cursor.moveToFirst();
             while(!cursor.isAfterLast()){
-                SystemClock.sleep(1000);
+                SystemClock.sleep(500);
                 publishProgress(time);
                 livingRoomItems.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
-                Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
-                //Log.i("HomeActivity", "SQL MESSAGE:" + cursor.getInt(cursor.getColumnIndex(DatabaseHelper.KEY_ID)));
                 cursor.moveToNext();
                 time+=time;
             }
@@ -173,18 +167,7 @@ public class HomeActivity extends AppCompatActivity {
             //Needed in order to populate the List
             homeAdapter.notifyDataSetChanged();
             dbProgress.setVisibility(View.INVISIBLE);
-
-
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-            builder.setTitle("Database Loaded");
-            builder.setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                }
-            });
-// Create the AlertDialog
-            AlertDialog dialog = builder.create();
-            dialog.show();
+            snack.make(findViewById(R.id.HomeItems), "Database Loaded", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
 
         }
