@@ -8,10 +8,15 @@ import android.app.FragmentTransaction;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ToggleButton;
@@ -39,6 +44,10 @@ public class LivingRoomFragment extends Fragment {
 
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.tool_bar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        setHasOptionsMenu(true);
+
 
 
     }
@@ -49,6 +58,7 @@ public class LivingRoomFragment extends Fragment {
         switch(position){
             case 1: //Lamp1
                 rootView = inflater.inflate(R.layout.activity_lamp1, container, false);
+
                 final ToggleButton tg = (ToggleButton)rootView.findViewById(R.id.lamp1Toggle);
 
                 //Set the button value to the stored DB value
@@ -77,6 +87,8 @@ public class LivingRoomFragment extends Fragment {
 
                     }
                 });
+
+
                 break;
             case 2: //Lamp 2
                 rootView = inflater.inflate(R.layout.activity_lamp2, container, false);
@@ -95,6 +107,49 @@ public class LivingRoomFragment extends Fragment {
         }
         return rootView;
     }
+
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Add menu button and items to title bar
+        getActivity().getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        //Get id of item clicked in menu
+        int id = item.getItemId();
+
+
+        if (id == R.id.smrt_kitch) {
+            startActivity(new Intent(ctx,Smart_Kitchen.class));
+            return true;
+        }
+        else if(id == R.id.main)
+        {
+            startActivity(new Intent(ctx,MainActivity.class));
+            return true;
+        }
+        else if(id == R.id.smart_home)
+        {
+            startActivity(new Intent(ctx,HomeActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 public static class CustomDialog extends DialogFragment{
     @Override
