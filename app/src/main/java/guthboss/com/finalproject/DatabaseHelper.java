@@ -12,16 +12,16 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "projectDB";
-    public static final int VERSION_NUM = 6;
+    public static final int VERSION_NUM = 7;
     public static final String KEY_ID = "_id";
-    public static final String TIMES_ACCESSED = "TimesAccessed";
     public static final String ON_OFF = "OnOff";
     public static final String LAST_POSITION = "LastPosition"; //This is a catch all for the position of the blinds, dimmer, and the television channel
+    public static final String LAST_COLOUR = "LastColour"; //Used for Lamp3 Spinner
     public static final String ITEMS = "Item";
     public static final String LIVING_ROOM_TABLE = "LivingRoomTable";
 
     //Must put in Default value of 0 to avoid null pointer
-    public static final String CREATE_TABLE_MESSAGE = "create table "+LIVING_ROOM_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ITEMS+" text, "+TIMES_ACCESSED+ " INTEGER DEFAULT 0, "+ON_OFF+" BOOLEAN DEFAULT TRUE, "+LAST_POSITION+" INTEGER DEFAULT 0);";
+    public static final String CREATE_TABLE_MESSAGE = "create table "+LIVING_ROOM_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ITEMS+" text, "+LAST_COLOUR+" INTEGER DEFAULT 0, "+ON_OFF+" BOOLEAN DEFAULT TRUE, "+LAST_POSITION+" INTEGER DEFAULT 0);";
 
     public DatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, VERSION_NUM);

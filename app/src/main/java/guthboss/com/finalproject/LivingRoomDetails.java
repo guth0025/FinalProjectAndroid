@@ -1,7 +1,8 @@
 package guthboss.com.finalproject;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 
 public class LivingRoomDetails extends AppCompatActivity {
 
@@ -17,6 +18,9 @@ public class LivingRoomDetails extends AppCompatActivity {
 
 
 
+        Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
     }
+
 }
