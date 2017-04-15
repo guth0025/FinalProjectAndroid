@@ -138,7 +138,7 @@ public class HomeActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             //Execute Query for all items in DB w/Times accessed
-            cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"TimesAccessed","Item"}, null,null,null,null,null);
+            cursor = db.query(DatabaseHelper.LIVING_ROOM_TABLE, new String[]{"Item"}, null,null,null,null,null);
 
             //Used to calculate the progress for progress bar
             int time = 100/cursor.getCount();

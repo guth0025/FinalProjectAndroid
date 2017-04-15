@@ -18,6 +18,7 @@
     <string name="blinds_activity">Set Blinds</string>
     <string name="notImplemented">Sorry, this feature is not yet implemented</string>
     <string name="ok">OK</string>
+    <string name="Television_onOff">Turn Television on/off</string>
     <string name="cancel">Cancel</string>
     <string-array name="colours">
         <item>Red</item>
