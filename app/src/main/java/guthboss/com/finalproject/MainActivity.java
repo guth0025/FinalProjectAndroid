@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             //add custom actionbar
             Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
             setSupportActionBar(toolbar);
-            //Launch Smart Kitchen
+            //Launch Smart kitchen
             kitchen = (Button)findViewById(R.id.smart_kitchen);
             //Launch to HomeActivity
             livingRoom = (Button)findViewById(R.id.homeActivity);

@@ -12,10 +12,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,9 +51,10 @@ public class LivingRoomFragment extends Fragment {
 
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.tool_bar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        //Tells the fragment that it has a toolbar menu
         setHasOptionsMenu(true);
+
 
 
 
@@ -66,6 +66,7 @@ public class LivingRoomFragment extends Fragment {
         switch(position){
             case 1: //Lamp1
                 rootView = inflater.inflate(R.layout.activity_lamp1, container, false);
+
 
                 tg = (ToggleButton)rootView.findViewById(R.id.lamp1Toggle);
 
@@ -213,8 +214,6 @@ public class LivingRoomFragment extends Fragment {
                 });
 
 
-
-
                 //Set the button value to the stored DB value
                 cursor = db.rawQuery("SELECT "+DatabaseHelper.ON_OFF+" FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" ='Television'",null);
                 cursor.moveToFirst();
@@ -281,10 +280,11 @@ public class LivingRoomFragment extends Fragment {
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Add menu button and items to title bar
         getActivity().getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
 

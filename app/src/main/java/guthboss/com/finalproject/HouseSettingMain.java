@@ -32,7 +32,7 @@ public class HouseSettingMain extends AppCompatActivity {
 
         settingsList = (ListView) findViewById(R.id.settingList);
         houseSettings.add("Garage");
-        houseSettings.add("House Temperature");
+        houseSettings.add("house_setting Temperature");
         houseSettings.add("Weather");
 
         addSettings = (EditText)findViewById(R.id.newSetting);
@@ -50,7 +50,7 @@ public class HouseSettingMain extends AppCompatActivity {
                     startActivity(new Intent(HouseSettingMain.this, Garage.class));
                 }
 
-                else if(houseSettings.get(position).toString() == "House Temperature")
+                else if(houseSettings.get(position).toString() == "house_setting Temperature")
                 {
                     startActivity(new Intent(HouseSettingMain.this, HouseTemp.class));
                 }
