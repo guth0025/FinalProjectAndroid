@@ -54,10 +54,6 @@ public class LivingRoomFragment extends Fragment {
 
         //Tells the fragment that it has a toolbar menu
         setHasOptionsMenu(true);
-
-
-
-
     }
 
     @Override
@@ -131,7 +127,6 @@ public class LivingRoomFragment extends Fragment {
                 final Spinner colourPicker = (Spinner)rootView.findViewById(R.id.spinner);
                 seekbar = (SeekBar)rootView.findViewById(R.id.seekBar2);
 
-
                 //Create an ArrayAdapter using the string array and a default spinner layout
                 ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(ctx, R.array.colours, android.R.layout.simple_spinner_dropdown_item);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -146,11 +141,6 @@ public class LivingRoomFragment extends Fragment {
                 cursor = db.rawQuery("SELECT "+DatabaseHelper.LAST_COLOUR+" FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" ='Lamp3'",null);
                 cursor.moveToFirst();
                 int lastColour = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LAST_COLOUR));
-
-
-
-
-
 
                 colourPicker.setSelection(lastColour);
 
@@ -281,10 +271,7 @@ public class LivingRoomFragment extends Fragment {
 
 
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Add menu button and items to title bar
-        getActivity().getMenuInflater().inflate(R.menu.menu, menu);
         inflater.inflate(R.menu.menu, menu);
-        super.onCreateOptionsMenu(menu, inflater);
     }
 
 
@@ -295,16 +282,19 @@ public class LivingRoomFragment extends Fragment {
 
 
         if (id == R.id.smrt_kitch) {
+            getActivity().finish();
             startActivity(new Intent(ctx,Smart_Kitchen.class));
             return true;
         }
         else if(id == R.id.main)
         {
+            getActivity().finish();
             startActivity(new Intent(ctx,MainActivity.class));
             return true;
         }
         else if(id == R.id.smart_home)
         {
+            getActivity().finish();
             startActivity(new Intent(ctx,HomeActivity.class));
         }
 
