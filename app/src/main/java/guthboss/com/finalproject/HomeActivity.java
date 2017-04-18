@@ -41,6 +41,8 @@ public class HomeActivity extends AppCompatActivity {
     protected static boolean flExists;
     protected Snackbar snack;
     protected static String name;
+    protected int first =0;
+    protected DBAsyncTask dbAsyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +67,12 @@ public class HomeActivity extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
 
         //Call the AsyncTask to load the DB
-        DBAsyncTask dbAsyncTask = new DBAsyncTask();
+        dbAsyncTask = new DBAsyncTask();
         dbAsyncTask.execute("any");
 
 
         homeAdapter = new ItemAdapter(this);
+
         items.setAdapter(homeAdapter);
 
         //Select Items from standard list
@@ -78,10 +81,11 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                name = livingRoomItems.get(position).toString();
                 //Don't have to move cursor. In correct position
                 //Because of the above method
                 position = (int) homeAdapter.getItemID(livingRoomItems.get(position));
-                name = livingRoomItems.get(position-1).toString();
+
 
 
                 //
@@ -146,8 +150,9 @@ public class HomeActivity extends AppCompatActivity {
             //Used to calculate the progress for progress bar
             int time = 100/cursor.getCount();
             cursor.moveToFirst();
+            //livingRoomItems.clear();
             while(!cursor.isAfterLast()){
-                SystemClock.sleep(500);
+                SystemClock.sleep(150);
                 publishProgress(time);
                 livingRoomItems.add(cursor.getString(cursor.getColumnIndex(DatabaseHelper.ITEMS)));
                 cursor.moveToNext();
@@ -223,7 +228,6 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //Get id of item clicked in menu
@@ -231,51 +235,39 @@ public class HomeActivity extends AppCompatActivity {
 
 
         if (id == R.id.smrt_kitch) {
+            finish();
             startActivity(new Intent(this,Smart_Kitchen.class));
-            return true;
         }
         else if(id == R.id.main)
         {
+            finish();
             startActivity(new Intent(this,MainActivity.class));
-            return true;
+
         }
         else if(id == R.id.smart_home)
         {
+            finish();
             startActivity(new Intent(this,HomeActivity.class));
         }
         else if(id == R.id.help_menu)
         {
-            if(flExists){
-                //Create a new bundle to pass and put in the position so we can
-                //choose the right fragment layout
-                Bundle bun = new Bundle();
-                bun.putInt("position",0);
-                LivingRoomFragment lvFragment = new LivingRoomFragment();
-                lvFragment.setArguments(bun);
-                android.app.Fragment frag = getFragmentManager().findFragmentByTag("OG_Fragment");
-                if(frag instanceof LivingRoomFragment){
-                    //Replace old fragment w/new fragment
-                    getFragmentManager().beginTransaction().remove(frag).commit();
-                    getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
-                }else{
-                    getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
-                }
-            } else{
-                //Call the empty frame Layout class (LivingRoomDetails)
-                Intent intent = new Intent(HomeActivity.this, LivingRoomDetails.class);
-                intent.putExtra("position",0);
-                startActivity(intent);
-            }
+            finish();
+            startActivity((new Intent(this,LivingRoomHelp.class)));
         }
-
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onResume(){
-        homeAdapter.notifyDataSetChanged();
-
+       if (first >0){
+           livingRoomItems.clear();
+           homeAdapter.notifyDataSetChanged();
+           dbAsyncTask = new DBAsyncTask();
+           dbAsyncTask.execute("any");
+       }
+        first++;
         super.onResume();
     }
+
 
 }
