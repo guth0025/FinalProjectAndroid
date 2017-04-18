@@ -62,6 +62,9 @@ public class LivingRoomFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
 
         switch(position){
+            case 0:
+
+                break;
             case 1: //Lamp1
                 rootView = inflater.inflate(R.layout.activity_lamp1, container, false);
 
@@ -181,7 +184,6 @@ public class LivingRoomFragment extends Fragment {
                 final EditText channel = (EditText)rootView.findViewById(R.id.channelText);
                 Button enterChannel = (Button)rootView.findViewById(R.id.channel);
                 tg = (ToggleButton)rootView.findViewById(R.id.TVOnOff);
-                db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+"="+name,null);
 
 
                 //Set the channel selected based on the last one from the DB
@@ -270,9 +272,8 @@ public class LivingRoomFragment extends Fragment {
                 delButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-
-                        db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+ "="+name,null);
+                        //db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+ "="+name,null);
+                        db.execSQL("DELETE FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" = '" + name + "'");
 
                     }
                 });
@@ -310,6 +311,11 @@ public class LivingRoomFragment extends Fragment {
         {
             getActivity().finish();
             startActivity(new Intent(ctx,HomeActivity.class));
+        }
+        else if(id == R.id.help_menu)
+        {
+            getActivity().finish();
+            startActivity(new Intent(ctx, LivingRoomHelp.class));
         }
 
         return super.onOptionsItemSelected(item);

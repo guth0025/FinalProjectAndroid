@@ -16,6 +16,9 @@
     <string name="lamp3_activity">Dimmable Light With Color Change</string>
     <string name="channel">Enter Channel</string>
     <string name="blinds_activity">Set Blinds</string>
+    <string name="LivingRoomHelp_version">Activity Version Number 1.0.12</string>
+    <string name="LivingRoomHelp_Name">Author: Jordan Mckenzie</string>
+    <string name="LivingRoomHelp_How_To">The smart living room interface is used by selecting an item from the list at the main activity. You can choose one of the lamps to turn on, dim or change colour, the Television that you can turn on / off as well as change the channel, and the Blinds that you can open or close using the slider. You can also add your own item to the list, as well as delete it.</string>
     <string name="notImplemented">Sorry, this feature is not yet implemented</string>
     <string name="ok">OK</string>
     <string name="Television_onOff">Turn Television on/off</string>
