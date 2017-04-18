@@ -19,9 +19,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String LAST_COLOUR = "LastColour"; //Used for Lamp3 Spinner
     public static final String ITEMS = "Item";
     public static final String LIVING_ROOM_TABLE = "LivingRoomTable";
-
+    public static final String KITCHEN_TABLE = "KitchenTable";
+    public static final String CURRENT_TEMP = "CurrentTemperature";//Most recent temp change for freezer/fridges
+    public static final String SETDIM = "LightDim";
     //Must put in Default value of 0 to avoid null pointer
     public static final String CREATE_TABLE_MESSAGE = "create table "+LIVING_ROOM_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ITEMS+" text, "+LAST_COLOUR+" INTEGER DEFAULT 0, "+ON_OFF+" BOOLEAN DEFAULT TRUE, "+LAST_POSITION+" INTEGER DEFAULT 0);";
+
+    public static final String CREATE_TABLE_KITCHEN = "create table "+KITCHEN_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ITEMS+" text);";
+
 
     public DatabaseHelper(Context ctx) {
         super(ctx, DATABASE_NAME, null, VERSION_NUM);
@@ -36,6 +41,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         db.execSQL("insert into "+LIVING_ROOM_TABLE+" ("+ITEMS+") Values ('Lamp3')");
         db.execSQL("insert into "+LIVING_ROOM_TABLE+" ("+ITEMS+") Values ('Television')");
         db.execSQL("insert into "+LIVING_ROOM_TABLE+" ("+ITEMS+") Values ('Blinds')");
+
+
+        db.execSQL(CREATE_TABLE_KITCHEN);
+        db.execSQL("insert into "+KITCHEN_TABLE+" ("+ITEMS+") Values ('Light')");
+        db.execSQL("insert into "+KITCHEN_TABLE+" ("+ITEMS+") Values ('Microwave')");
+        db.execSQL("insert into "+KITCHEN_TABLE+" ("+ITEMS+") Values ('Fridge')");
+        db.execSQL("insert into "+KITCHEN_TABLE+" ("+ITEMS+") Values ('Freezer')");
+
 
         Log.i("DatabaseHelper", "Calling onCreate");
 

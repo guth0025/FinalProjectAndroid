@@ -63,7 +63,8 @@ public class Smart_Kitchen extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kitchenAppliances.add(addAppliance.getText().toString());
+                Intent addItem = new Intent(getApplicationContext(),AddKitchenItem.class);
+                startActivityForResult(addItem,4);
                 addAppliance.setText("");
                 kitchList.notifyDataSetChanged();
                 Toast.makeText(Smart_Kitchen.this, "Added", Toast.LENGTH_LONG).show();

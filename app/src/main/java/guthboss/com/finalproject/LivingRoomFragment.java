@@ -375,8 +375,6 @@ public static class CustomDialog extends DialogFragment{
             }
             return null;
 
-
-
         }
 
     }
