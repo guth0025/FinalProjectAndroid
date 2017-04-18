@@ -12,10 +12,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +32,7 @@ import android.widget.ToggleButton;
 
 public class LivingRoomFragment extends Fragment {
     static int position;
+    String name;
     View rootView;
     Context ctx;
     DatabaseHelper dbHelper;
@@ -47,17 +47,15 @@ public class LivingRoomFragment extends Fragment {
         super.onCreate(b);
         Bundle bun = getArguments();
         position = bun.getInt("position");
+        name = bun.getString("name");
         ctx = getActivity().getApplicationContext();
 
 
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.tool_bar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+        //Tells the fragment that it has a toolbar menu
         setHasOptionsMenu(true);
-
-
-
     }
 
     @Override
@@ -66,6 +64,7 @@ public class LivingRoomFragment extends Fragment {
         switch(position){
             case 1: //Lamp1
                 rootView = inflater.inflate(R.layout.activity_lamp1, container, false);
+
 
                 tg = (ToggleButton)rootView.findViewById(R.id.lamp1Toggle);
 
@@ -130,7 +129,6 @@ public class LivingRoomFragment extends Fragment {
                 final Spinner colourPicker = (Spinner)rootView.findViewById(R.id.spinner);
                 seekbar = (SeekBar)rootView.findViewById(R.id.seekBar2);
 
-
                 //Create an ArrayAdapter using the string array and a default spinner layout
                 ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(ctx, R.array.colours, android.R.layout.simple_spinner_dropdown_item);
                 spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -145,11 +143,6 @@ public class LivingRoomFragment extends Fragment {
                 cursor = db.rawQuery("SELECT "+DatabaseHelper.LAST_COLOUR+" FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" ='Lamp3'",null);
                 cursor.moveToFirst();
                 int lastColour = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LAST_COLOUR));
-
-
-
-
-
 
                 colourPicker.setSelection(lastColour);
 
@@ -188,8 +181,7 @@ public class LivingRoomFragment extends Fragment {
                 final EditText channel = (EditText)rootView.findViewById(R.id.channelText);
                 Button enterChannel = (Button)rootView.findViewById(R.id.channel);
                 tg = (ToggleButton)rootView.findViewById(R.id.TVOnOff);
-
-
+                db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+"="+name,null);
 
 
                 //Set the channel selected based on the last one from the DB
@@ -211,8 +203,6 @@ public class LivingRoomFragment extends Fragment {
                         }
                     }
                 });
-
-
 
 
                 //Set the button value to the stored DB value
@@ -275,16 +265,27 @@ public class LivingRoomFragment extends Fragment {
                 break;
             default: //For added items
                 rootView = inflater.inflate(R.layout.activity_not_implemented, container, false);
+                Button delButton = (Button)rootView.findViewById(R.id.delButton);
+
+                delButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+ "="+name,null);
+
+                    }
+                });
+
         }
         return rootView;
     }
 
 
 
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Add menu button and items to title bar
-        getActivity().getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
+    //Creates the menu and inflates it
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
     }
 
 
@@ -295,16 +296,19 @@ public class LivingRoomFragment extends Fragment {
 
 
         if (id == R.id.smrt_kitch) {
+            getActivity().finish();
             startActivity(new Intent(ctx,Smart_Kitchen.class));
             return true;
         }
         else if(id == R.id.main)
         {
+            getActivity().finish();
             startActivity(new Intent(ctx,MainActivity.class));
             return true;
         }
         else if(id == R.id.smart_home)
         {
+            getActivity().finish();
             startActivity(new Intent(ctx,HomeActivity.class));
         }
 

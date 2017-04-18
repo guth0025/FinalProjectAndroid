@@ -2,19 +2,43 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="Home"
-          android:id="@+id/main"
+        android:id="@+id/main"
+        android:icon="@drawable/home"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
         />
+
     <item android:title="Smart_Home"
-          android:id="@+id/smart_home"
+        android:id="@+id/smart_home"
+        android:icon="@drawable/house_setting"
+        app:showAsAction="always"
+        android:orderInCategory="110"
         />
-    <item android:title="Smart_House_Setting"
-          android:id="@+id/house_setting"
+
+    <item android:title="Smart_LivingRoom"
+        android:id="@+id/house_setting"
+        android:icon="@drawable/living_room"
+        app:showAsAction="always"
+        android:orderInCategory="120"
         />
+
     <item android:title="Smart_Car"
-          android:id="@+id/car"
+        android:id="@+id/car"
+        android:icon="@drawable/car"
+        app:showAsAction="always"
+        android:orderInCategory="130"
         />
 
     <item android:title="Smart_Kitchen"
         android:id="@+id/smrt_kitch"
+        android:icon="@drawable/kitchen"
+        app:showAsAction="always"
+        android:orderInCategory="140"
         />
+
+    <item android:title="Help"
+        android:id="@+id/help_menu"
+        android:orderInCategory="150"
+        />
+
 </menu>

@@ -27,24 +27,27 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+//Main class for the Smart Living Room
 public class HomeActivity extends AppCompatActivity {
-    ListView items;
-    ArrayList<String> livingRoomItems = new ArrayList<>();
-    EditText addItemText;
-    Button addItemBtn;
+    protected ListView items;
+    protected ArrayList<String> livingRoomItems = new ArrayList<>();
+    protected EditText addItemText;
+    protected Button addItemBtn;
     private Context ctx;
-    DatabaseHelper dbHelper;
-    SQLiteDatabase db;
-    Cursor cursor;
-    ItemAdapter homeAdapter;
-    static boolean flExists;
-    Snackbar snack;
+    protected DatabaseHelper dbHelper;
+    protected SQLiteDatabase db;
+    protected Cursor cursor;
+    protected ItemAdapter homeAdapter;
+    protected static boolean flExists;
+    protected Snackbar snack;
+    protected static String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        //Create and load the toolbar
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
         ctx = this;
@@ -61,16 +64,10 @@ public class HomeActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
 
-
+        //Call the AsyncTask to load the DB
         DBAsyncTask dbAsyncTask = new DBAsyncTask();
         dbAsyncTask.execute("any");
 
-
-
-
-
-        //DBAsyncTask dbTask = new DBAsyncTask();
-        //dbTask.execute("any");
 
         homeAdapter = new ItemAdapter(this);
         items.setAdapter(homeAdapter);
@@ -81,35 +78,41 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //This implementation feels like cheating
                 //Don't have to move cursor. In correct position
                 //Because of the above method
                 position = (int) homeAdapter.getItemID(livingRoomItems.get(position));
-                        if(flExists){
-                            //Create a new bundle to pass and put in the position so we can
-                            //choose the right fragment layout
-                            Bundle bun = new Bundle();
-                            bun.putInt("position",position);
-                            LivingRoomFragment lvFragment = new LivingRoomFragment();
-                            lvFragment.setArguments(bun);
-                            android.app.Fragment frag = getFragmentManager().findFragmentByTag("OG_Fragment");
-                            if(frag instanceof LivingRoomFragment){
-                                //Replace old fragment w/new fragment
-                                getFragmentManager().beginTransaction().remove(frag).commit();
-                                getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
-                            }else{
-                                getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
-                            }
-                        } else{
-                            //Call the empty frame Layout class (LivingRoomDetails)
-                            Intent intent = new Intent(HomeActivity.this, LivingRoomDetails.class);
-                            intent.putExtra("position",position);
-                            startActivity(intent);
-                        }
-                        if(position > 5){
-                            Toast toast = Toast.makeText(HomeActivity.this, "Item not yet implemented", Toast.LENGTH_LONG);
-                            toast.show();
-                        }
+                name = livingRoomItems.get(position-1).toString();
+
+
+                //
+                if(flExists){
+                    //Create a new bundle to pass and put in the position so we can
+                    //choose the right fragment layout
+                    Bundle bun = new Bundle();
+                    bun.putString("name", name);
+                    bun.putInt("position",position);
+                    LivingRoomFragment lvFragment = new LivingRoomFragment();
+                    lvFragment.setArguments(bun);
+                    android.app.Fragment frag = getFragmentManager().findFragmentByTag("OG_Fragment");
+
+                    if(frag instanceof LivingRoomFragment){
+                        //Replace old fragment w/new fragment
+                        getFragmentManager().beginTransaction().remove(frag).commit();
+                        getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
+                    }else{
+                        getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
+                    }
+                } else{
+                    //Call the empty frame Layout class (LivingRoomDetails)
+                    Intent intent = new Intent(HomeActivity.this, LivingRoomDetails.class);
+                    intent.putExtra("position",position);
+                    intent.putExtra("name",name);
+                    startActivity(intent);
+                }
+                if(position > 5){
+                    Toast toast = Toast.makeText(HomeActivity.this, "Item not yet implemented", Toast.LENGTH_LONG);
+                    toast.show();
+                }
             }
         });
 
@@ -239,6 +242,10 @@ public class HomeActivity extends AppCompatActivity {
         else if(id == R.id.smart_home)
         {
             startActivity(new Intent(this,HomeActivity.class));
+        }
+        else if(id == R.id.help_menu)
+        {
+            //TODO FILL OUT HELP
         }
 
         return super.onOptionsItemSelected(item);

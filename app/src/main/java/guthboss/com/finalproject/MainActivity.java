@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             //add custom actionbar
             Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
             setSupportActionBar(toolbar);
-            //Launch Smart Kitchen
+            //Launch Smart kitchen
             kitchen = (Button)findViewById(R.id.smart_kitchen);
             //Launch to HomeActivity
             livingRoom = (Button)findViewById(R.id.homeActivity);
@@ -76,6 +76,10 @@ house = (Button)findViewById(R.id.house_settings);
         else if(id == R.id.smart_home)
         {
             startActivity(new Intent(this,HomeActivity.class));
+        }
+        else if(id == R.id.help_menu)
+        {
+            //TODO FILL OUT HELP
         }
 
         return super.onOptionsItemSelected(item);

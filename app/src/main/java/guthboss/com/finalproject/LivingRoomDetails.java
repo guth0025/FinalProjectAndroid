@@ -13,6 +13,8 @@ public class LivingRoomDetails extends AppCompatActivity {
 
         LivingRoomFragment lvFragment = new LivingRoomFragment();
         Bundle bun = getIntent().getExtras();
+        String name = bun.getString("name");
+        int pos = bun.getInt("position");
         lvFragment.setArguments(bun);
         getFragmentManager().beginTransaction().add(R.id.livingFrag, lvFragment).commit();
 

@@ -20,6 +20,7 @@
     <string name="ok">OK</string>
     <string name="Television_onOff">Turn Television on/off</string>
     <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
     <string-array name="colours">
         <item>Red</item>
         <item>Blue</item>
