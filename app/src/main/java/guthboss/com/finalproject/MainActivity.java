@@ -77,6 +77,10 @@ house = (Button)findViewById(R.id.house_settings);
         {
             startActivity(new Intent(this,HomeActivity.class));
         }
+        else if(id == R.id.help_menu)
+        {
+            //TODO FILL OUT HELP
+        }
 
         return super.onOptionsItemSelected(item);
 

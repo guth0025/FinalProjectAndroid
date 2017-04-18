@@ -32,6 +32,7 @@ import android.widget.ToggleButton;
 
 public class LivingRoomFragment extends Fragment {
     static int position;
+    String name;
     View rootView;
     Context ctx;
     DatabaseHelper dbHelper;
@@ -46,6 +47,7 @@ public class LivingRoomFragment extends Fragment {
         super.onCreate(b);
         Bundle bun = getArguments();
         position = bun.getInt("position");
+        name = bun.getString("name");
         ctx = getActivity().getApplicationContext();
 
 
@@ -179,8 +181,7 @@ public class LivingRoomFragment extends Fragment {
                 final EditText channel = (EditText)rootView.findViewById(R.id.channelText);
                 Button enterChannel = (Button)rootView.findViewById(R.id.channel);
                 tg = (ToggleButton)rootView.findViewById(R.id.TVOnOff);
-
-
+                db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+"="+name,null);
 
 
                 //Set the channel selected based on the last one from the DB
@@ -264,12 +265,25 @@ public class LivingRoomFragment extends Fragment {
                 break;
             default: //For added items
                 rootView = inflater.inflate(R.layout.activity_not_implemented, container, false);
+                Button delButton = (Button)rootView.findViewById(R.id.delButton);
+
+                delButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+                        db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+ "="+name,null);
+
+                    }
+                });
+
         }
         return rootView;
     }
 
 
 
+    //Creates the menu and inflates it
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
     }

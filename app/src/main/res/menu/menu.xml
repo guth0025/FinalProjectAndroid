@@ -36,4 +36,9 @@
         android:orderInCategory="140"
         />
 
+    <item android:title="Help"
+        android:id="@+id/help_menu"
+        android:orderInCategory="150"
+        />
+
 </menu>
