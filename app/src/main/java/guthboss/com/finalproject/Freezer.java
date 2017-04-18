@@ -63,7 +63,7 @@ public class Freezer extends AppCompatActivity {
     /*****************************************Action Bar Menu Handling******************************/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0,0,0,"Freezer Help");
+
         // Add menu button and items to title bar
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
@@ -87,7 +87,7 @@ public class Freezer extends AppCompatActivity {
         {
             startActivity(new Intent(this,HomeActivity.class));
         }
-        else if(id == 0)
+        else if(id == R.id.help_menu)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(Freezer.this);
             builder.setMessage("Freezer: Adjust temperature of freezer by sliding dial right or left").setTitle("Freezer Help")

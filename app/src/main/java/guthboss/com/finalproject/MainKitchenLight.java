@@ -69,7 +69,7 @@ public class MainKitchenLight extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Add menu button and items to title bar
-        menu.add(0,0,0,"Light Help");
+
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
@@ -94,7 +94,7 @@ public class MainKitchenLight extends AppCompatActivity {
         {
             startActivity(new Intent(this,HomeActivity.class));
         }
-        else if(id == 0)
+        else if(id == R.id.help_menu)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(MainKitchenLight.this);
             builder.setMessage("Light: Switch light on or off by clicking on off switch or dim by pressing dim button.").setTitle("Light Help")
