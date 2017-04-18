@@ -26,38 +26,39 @@
         android:elevation="0dp" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/cook_time"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:text="0:00"
+        android:elevation="1dp"
+        android:text="0"
         android:textAlignment="viewEnd"
         android:textAllCaps="true"
         android:textSize="90sp"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/enter_cook_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Enter Time"
-        android:inputType="time"
+        android:inputType="number"
         android:textAlignment="center" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cook_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="COOK" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/microwave_stop_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="STOP" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/microwave_reset_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="RESET" />
