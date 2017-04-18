@@ -259,6 +259,9 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onResume(){
+
+        //If it is not the first time that onResume has been called, (initial),
+        //then load from DB again to check for removed (deleted) items
        if (first >0){
            livingRoomItems.clear();
            homeAdapter.notifyDataSetChanged();

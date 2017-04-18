@@ -282,7 +282,7 @@ public class LivingRoomFragment extends Fragment {
 
 
 
-    //Creates the menu and inflates it
+    //Inflates the menu
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
     }
@@ -316,7 +316,6 @@ public class LivingRoomFragment extends Fragment {
         //Open the help menu activity
         else if(id == R.id.help_menu)
         {
-            getActivity().finish();
             startActivity(new Intent(ctx, LivingRoomHelp.class));
         }
 
