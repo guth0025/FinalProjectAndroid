@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="android.permission.VIBRATE" />
+>>>>>>> 6fecf31364545d21651d9d77c6570f1e6533f5e7
 =======
     <uses-permission android:name="android.permission.VIBRATE" />
 >>>>>>> 6fecf31364545d21651d9d77c6570f1e6533f5e7
@@ -63,7 +67,11 @@
             android:label="Kitchen Light" />
         <activity android:name=".LivingRoomDetails" />
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".LivingRoomHelp"></activity>
+=======
+        <activity android:name=".AddKitchenItem"></activity>
+>>>>>>> 6fecf31364545d21651d9d77c6570f1e6533f5e7
 =======
         <activity android:name=".AddKitchenItem"></activity>
 >>>>>>> 6fecf31364545d21651d9d77c6570f1e6533f5e7

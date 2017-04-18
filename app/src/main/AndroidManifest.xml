@@ -3,10 +3,7 @@
     package="guthboss.com.finalproject">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-<<<<<<< HEAD
-=======
     <uses-permission android:name="android.permission.VIBRATE" />
->>>>>>> 6fecf31364545d21651d9d77c6570f1e6533f5e7
 
     <application
         android:allowBackup="true"
@@ -62,11 +59,8 @@
             android:name=".MainKitchenLight"
             android:label="Kitchen Light" />
         <activity android:name=".LivingRoomDetails" />
-<<<<<<< HEAD
         <activity android:name=".LivingRoomHelp"></activity>
-=======
         <activity android:name=".AddKitchenItem"></activity>
->>>>>>> 6fecf31364545d21651d9d77c6570f1e6533f5e7
     </application>
 
 </manifest>
