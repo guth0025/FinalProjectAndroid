@@ -245,10 +245,37 @@ public class HomeActivity extends AppCompatActivity {
         }
         else if(id == R.id.help_menu)
         {
-            //TODO FILL OUT HELP
+            if(flExists){
+                //Create a new bundle to pass and put in the position so we can
+                //choose the right fragment layout
+                Bundle bun = new Bundle();
+                bun.putInt("position",0);
+                LivingRoomFragment lvFragment = new LivingRoomFragment();
+                lvFragment.setArguments(bun);
+                android.app.Fragment frag = getFragmentManager().findFragmentByTag("OG_Fragment");
+                if(frag instanceof LivingRoomFragment){
+                    //Replace old fragment w/new fragment
+                    getFragmentManager().beginTransaction().remove(frag).commit();
+                    getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
+                }else{
+                    getFragmentManager().beginTransaction().addToBackStack(null).add(R.id.frameLayout, lvFragment, "OG_Fragment").commit();
+                }
+            } else{
+                //Call the empty frame Layout class (LivingRoomDetails)
+                Intent intent = new Intent(HomeActivity.this, LivingRoomDetails.class);
+                intent.putExtra("position",0);
+                startActivity(intent);
+            }
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume(){
+        homeAdapter.notifyDataSetChanged();
+
+        super.onResume();
     }
 
 }
