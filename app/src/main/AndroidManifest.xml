@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="guthboss.com.finalproject">
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -57,7 +58,8 @@
         <activity
             android:name=".MainKitchenLight"
             android:label="Kitchen Light" />
-        <activity android:name=".LivingRoomDetails"></activity>
+        <activity android:name=".LivingRoomDetails" />
+        <activity android:name=".AddKitchenItem"></activity>
     </application>
 
 </manifest>

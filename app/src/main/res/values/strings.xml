@@ -29,4 +29,12 @@
         <item>Orange</item>
     </string-array>
 
+    <string-array name="kitchen_items">
+        <item>Fridge</item>
+        <item>Freezer</item>
+        <item>Microwave</item>
+        <item>Light</item>
+
+    </string-array>
+
 </resources>
