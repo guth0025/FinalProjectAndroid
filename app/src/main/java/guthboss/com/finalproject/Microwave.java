@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,21 +34,38 @@ public class Microwave extends AppCompatActivity {
     MicrowaveTimer timer;
     String stopTime;
     Vibrator vibrate;
-
+    ProgressBar progBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_microwave);
 
+        TextView nameText = (TextView)findViewById(R.id.name);
+
+        Bundle bundle = getIntent().getExtras();
+
+        String name = bundle.getString("name");
+
+        nameText.setText(name);
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.tool_bar);
+
         setSupportActionBar(toolbar);
 
         vibrate = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
 
         Button cookButton = (Button)findViewById(R.id.cook_button);
+
         Button restButton = (Button)findViewById(R.id.microwave_reset_button);
+
         Button stopButton = (Button)findViewById(R.id.microwave_stop_button);
+
+        progBar = (ProgressBar) findViewById(R.id.progress_counter);
+
         cookTime = (TextView)findViewById(R.id.cook_time);
+
         enterCookTime =(EditText)findViewById(R.id.enter_cook_time);
 
 /**
@@ -66,6 +84,7 @@ public class Microwave extends AppCompatActivity {
                         {
                             timer = new MicrowaveTimer();
                             Log.i("StopTime: ",stopTime);
+                            progBar.setMax(Integer.parseInt(stopTime));
                             timer.execute(stopTime);
                         }
                         else if(Integer.parseInt(enterCookTime.getText().toString()) >= 0 )
@@ -74,6 +93,7 @@ public class Microwave extends AppCompatActivity {
                             stopTime = enterCookTime.getText().toString();
                             cookTime.setText(enterCookTime.getText());
                             timer = new MicrowaveTimer();
+                            progBar.setMax(Integer.parseInt(stopTime));
                                 timer.execute(stopTime);
 
                            }
@@ -172,8 +192,8 @@ public class Microwave extends AppCompatActivity {
             super.onProgressUpdate(update);
             if(Integer.parseInt(update[0].toString())>=0)
             cookTime.setText(update[0].toString());
-
-
+            //int currentProgress = update[0]%seconds;
+            progBar.setProgress(update[0]);
         }
 
         @Override
@@ -228,7 +248,7 @@ public class Microwave extends AppCompatActivity {
         else if(id == R.id.help_menu)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(Microwave.this);
-            builder.setMessage("Microwave: Enter amount of time in seconds you wish to cook for. Start cooking by pressing cook button.").setTitle("Microwave Help")
+            builder.setMessage("Microwave: Enter amount of time in seconds you wish to cook for. Start cooking by pressing cook button. Author: Noah Guthrie  Version: 1").setTitle("Microwave Help")
                     .setPositiveButton("OK",new DialogInterface.OnClickListener()
                     {
                         public void onClick(DialogInterface dialog, int id)
