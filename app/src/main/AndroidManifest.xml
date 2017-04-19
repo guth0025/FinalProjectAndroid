@@ -62,12 +62,10 @@
             android:name=".MainKitchenLight"
             android:label="Kitchen Light" />
         <activity android:name=".LivingRoomDetails" />
-        <activity android:name=".LivingRoomHelp"></activity>
-        <activity android:name=".AddKitchenItem"></activity>
+        <activity android:name=".LivingRoomHelp"/>
+        <activity android:name=".AddKitchenItem"/>
 
-        <activity android:name=".LivingRoomHelp"></activity>
 
-        <activity android:name=".AddKitchenItem"></activity>
 
     </application>
 
