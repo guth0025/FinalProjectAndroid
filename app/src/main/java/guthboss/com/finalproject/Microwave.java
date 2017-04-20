@@ -84,7 +84,7 @@ public class Microwave extends AppCompatActivity {
                         {
                             timer = new MicrowaveTimer();
                             Log.i("StopTime: ",stopTime);
-                            progBar.setMax(Integer.parseInt(stopTime));
+                            progBar.setProgress(Integer.parseInt(stopTime));
                             timer.execute(stopTime);
                         }
                         else if(Integer.parseInt(enterCookTime.getText().toString()) >= 0 )
@@ -125,6 +125,7 @@ public class Microwave extends AppCompatActivity {
                     timer.cancel(true);
                     cookTime.setText("0");
                     stopTime = null;
+                    progBar.setProgress(0);
                     Toast.makeText(Microwave.this,"Reset",Toast.LENGTH_SHORT).show();
                 }
 

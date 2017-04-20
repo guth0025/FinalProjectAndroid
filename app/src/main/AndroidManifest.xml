@@ -50,9 +50,6 @@
             android:name=".Fridge"
             android:label="Fridge" />
         <activity
-            android:name=".ComingSoon"
-            android:label="Coming Soon" />
-        <activity
             android:name=".Freezer"
             android:label="Freezer" />
         <activity
