@@ -23,9 +23,7 @@ public class HouseSettingMain extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_house_setting_main);
 
         settingsList = (ListView) findViewById(R.id.settingList);
