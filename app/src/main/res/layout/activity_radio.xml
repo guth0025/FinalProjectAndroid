@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_radio"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="guthboss.com.finalproject.Radio">
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:inputType="textPersonName|number"
+android:ems="10"
+android:layout_alignParentTop="true"
+android:layout_alignParentStart="true"
+android:id="@+id/Station1"
+ />
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:inputType="textPersonName|number"
+android:ems="10"
+android:id="@+id/Station6"
+android:layout_below="@+id/Station5"
+android:layout_alignParentStart="true" />
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:inputType="textPersonName|number"
+android:ems="10"
+android:id="@+id/Station2"
+android:layout_below="@+id/Station1"
+android:layout_alignParentStart="true" />
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:inputType="textPersonName|number"
+android:ems="10"
+android:id="@+id/Station3"
+android:layout_below="@+id/Station2"
+android:layout_alignParentStart="true" />
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:inputType="textPersonName|number"
+android:ems="10"
+android:id="@+id/Station4"
+android:layout_below="@+id/Station3"
+android:layout_alignParentStart="true" />
+
+<EditText
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:inputType="textPersonName|number"
+android:ems="10"
+android:id="@+id/Station5"
+android:layout_below="@+id/Station4"
+android:layout_alignParentStart="true" />
+
+<Button
+android:text="@string/autoSubmit"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/radioBtn"
+android:layout_alignParentBottom="true"
+android:layout_alignParentStart="true" />
+
+<Button
+android:text="@string/autoMute"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/radioMute"
+android:layout_above="@+id/radioBtn"
+android:layout_alignParentStart="true"
+android:layout_marginBottom="37dp" />
+
+<SeekBar
+
+android:id="@+id/radioVolume"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:max="100"
+android:progress="10"
+android:layout_below="@+id/Station6"
+android:layout_alignParentStart="true"
+android:layout_marginTop="34dp" />
+
+
+
+
+
+    </RelativeLayout>
