@@ -31,15 +31,15 @@ import android.widget.ToggleButton;
  */
 
 public class LivingRoomFragment extends Fragment {
-    static int position;
-    String name;
-    View rootView;
-    Context ctx;
-    DatabaseHelper dbHelper;
-    SQLiteDatabase db;
-    Cursor cursor;
+    protected static int position;
+    protected String name;
+    protected View rootView;
+    protected Context ctx;
+    protected DatabaseHelper dbHelper;
+    protected SQLiteDatabase db;
+    protected Cursor cursor;
     public static boolean onOff;
-    ToggleButton tg;
+    protected ToggleButton tg;
 
 
     @Override
@@ -49,7 +49,6 @@ public class LivingRoomFragment extends Fragment {
         position = bun.getInt("position");
         name = bun.getString("name");
         ctx = getActivity().getApplicationContext();
-
 
         dbHelper = new DatabaseHelper(ctx);
         db = dbHelper.getWritableDatabase();
@@ -61,14 +60,12 @@ public class LivingRoomFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
 
+
+        //Inflate layout depending on the position that is passed in
         switch(position){
-            case 0:
-
-                break;
-            case 1: //Lamp1
+            //Case for Lamp1
+            case 1:
                 rootView = inflater.inflate(R.layout.activity_lamp1, container, false);
-
-
                 tg = (ToggleButton)rootView.findViewById(R.id.lamp1Toggle);
 
                 //Set the button value to the stored DB value
@@ -91,17 +88,16 @@ public class LivingRoomFragment extends Fragment {
                             db.update(DatabaseHelper.LIVING_ROOM_TABLE, contentVal, "_id=1",null);
                         }
 
-                        // Create the AlertDialog
+                        // Create and show alert dialog
                         FragmentTransaction ft = getFragmentManager().beginTransaction();
                         new CustomDialog().show(ft, "A tag");
-
                     }
                 });
-
                 break;
-            case 2: //Lamp 2
-                rootView = inflater.inflate(R.layout.activity_lamp2, container, false);
 
+            //Case for Lamp2
+            case 2:
+                rootView = inflater.inflate(R.layout.activity_lamp2, container, false);
                 SeekBar seekbar = (SeekBar)rootView.findViewById(R.id.lamp2Seek);
 
                 //Set the SeekBar value to the stored DB value
@@ -127,7 +123,8 @@ public class LivingRoomFragment extends Fragment {
                 });
                 break;
 
-            case 3: //Lamp 3
+            //Case for Lamp3
+            case 3:
                 rootView = inflater.inflate(R.layout.activity_lamp3, container, false);
                 final Spinner colourPicker = (Spinner)rootView.findViewById(R.id.spinner);
                 seekbar = (SeekBar)rootView.findViewById(R.id.seekBar2);
@@ -143,10 +140,10 @@ public class LivingRoomFragment extends Fragment {
                 lastPosition = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LAST_POSITION));
                 seekbar.setProgress(lastPosition);
 
+                //Set the colour value to be that which is stored in the DB
                 cursor = db.rawQuery("SELECT "+DatabaseHelper.LAST_COLOUR+" FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" ='Lamp3'",null);
                 cursor.moveToFirst();
                 int lastColour = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LAST_COLOUR));
-
                 colourPicker.setSelection(lastColour);
 
                 //Update the DB with the value when slider is moved
@@ -179,7 +176,8 @@ public class LivingRoomFragment extends Fragment {
                 });
                 break;
 
-            case 4: // Television
+            //Case for Television
+            case 4:
                 rootView = inflater.inflate(R.layout.activity_television, container, false);
                 final EditText channel = (EditText)rootView.findViewById(R.id.channelText);
                 Button enterChannel = (Button)rootView.findViewById(R.id.channel);
@@ -192,6 +190,7 @@ public class LivingRoomFragment extends Fragment {
                 lastPosition = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.LAST_POSITION));
                 channel.setText(lastPosition+"");
 
+                //Update the DB with the value when channel is entered
                 enterChannel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -233,9 +232,10 @@ public class LivingRoomFragment extends Fragment {
 
                     }
                 });
-
                 break;
-            case 5: //Blinds
+
+            //Case for Blinds
+            case 5:
                 rootView = inflater.inflate(R.layout.activity_blinds, container, false);
                 seekbar = (SeekBar)rootView.findViewById(R.id.blindsBar);
 
@@ -262,120 +262,119 @@ public class LivingRoomFragment extends Fragment {
                         db.update(DatabaseHelper.LIVING_ROOM_TABLE, contentVal, "_id=5",null);
                     }
                 });
-
-
                 break;
-            default: //For added items
+
+            //Case for newly added items
+            default:
                 rootView = inflater.inflate(R.layout.activity_not_implemented, container, false);
                 Button delButton = (Button)rootView.findViewById(R.id.delButton);
 
+                //Delete the item from the DB when clicked
                 delButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //db.delete(DatabaseHelper.LIVING_ROOM_TABLE, DatabaseHelper.ITEMS+ "="+name,null);
                         db.execSQL("DELETE FROM "+DatabaseHelper.LIVING_ROOM_TABLE+" WHERE "+DatabaseHelper.ITEMS+" = '" + name + "'");
-
                     }
                 });
-
         }
         return rootView;
     }
 
 
 
-    //Creates the menu and inflates it
+    //Inflates the menu
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu, menu);
     }
 
 
+    //Method for action taken based on which item on the toolbar is selected
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         //Get id of item clicked in menu
         int id = item.getItemId();
 
-
+        //Start the Kitchen Activity
         if (id == R.id.smrt_kitch) {
             getActivity().finish();
             startActivity(new Intent(ctx,Smart_Kitchen.class));
             return true;
         }
+        //Start the Main activity
         else if(id == R.id.main)
         {
             getActivity().finish();
             startActivity(new Intent(ctx,MainActivity.class));
             return true;
         }
+        //Start the smart home activity
         else if(id == R.id.smart_home)
         {
             getActivity().finish();
             startActivity(new Intent(ctx,HomeActivity.class));
         }
+        //Open the help menu activity
         else if(id == R.id.help_menu)
         {
-            getActivity().finish();
             startActivity(new Intent(ctx, LivingRoomHelp.class));
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-public static class CustomDialog extends DialogFragment{
-    @Override
-        public Dialog onCreateDialog(Bundle saved)
-        {
-
-            return returnDialog(position);
-
-        }
-
-        public Dialog returnDialog(int position){
-            switch(position){
-                case 1: //Lamp1
-                    if (onOff == false){
-                        onOff = true;
-                        return new AlertDialog.Builder(getActivity()).setTitle("Turned Lamp On").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Do nothing
-                            }
-                        }).create();
-                    } else{
-                        onOff = false;
-                        return new AlertDialog.Builder(getActivity()).setTitle("Turned Lamp Off").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Do nothing
-                            }
-                        }).create();
-                    }
-                case 4: // Television
-                    if (onOff == false){
-                        onOff = true;
-                        return new AlertDialog.Builder(getActivity()).setTitle("Turned Television On").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Do nothing
-                            }
-                        }).create();
-                    } else{
-                        onOff = false;
-                        return new AlertDialog.Builder(getActivity()).setTitle("Turned Television Off").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //Do nothing
-                            }
-                        }).create();
-                    }
-                case 5: //Blinds
-                    break;
-                default: //For added items
+    //Creates a custom dialog in the fragment
+    public static class CustomDialog extends DialogFragment{
+        @Override
+            public Dialog onCreateDialog(Bundle saved)
+            {
+                return returnDialog(position);
             }
-            return null;
 
-        }
+            public Dialog returnDialog(int position){
+                switch(position){
+                    case 1: //Lamp1
+                        if (onOff == false){
+                            onOff = true;
+                            return new AlertDialog.Builder(getActivity()).setTitle("Turned Lamp On").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Do nothing
+                                }
+                            }).create();
+                        } else{
+                            onOff = false;
+                            return new AlertDialog.Builder(getActivity()).setTitle("Turned Lamp Off").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Do nothing
+                                }
+                            }).create();
+                        }
+                    case 4: // Television
+                        if (onOff == false){
+                            onOff = true;
+                            return new AlertDialog.Builder(getActivity()).setTitle("Turned Television On").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Do nothing
+                                }
+                            }).create();
+                        } else{
+                            onOff = false;
+                            return new AlertDialog.Builder(getActivity()).setTitle("Turned Television Off").setNegativeButton(R.string.ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //Do nothing
+                                }
+                            }).create();
+                        }
+                    case 5: //Blinds
+                        break;
+                    default: //For added items
+                }
+                return null;
+
+            }
 
     }
 }

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context="guthboss.com.finalproject.LivingRoomHelp"
     android:orientation="vertical">
+    <include android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"/>
 
 
     <TextView

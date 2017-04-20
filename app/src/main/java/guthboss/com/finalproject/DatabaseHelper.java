@@ -12,7 +12,7 @@ import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String DATABASE_NAME = "projectDB";
-    public static final int VERSION_NUM = 7;
+    public static final int VERSION_NUM = 8;
     public static final String KEY_ID = "_id";
     public static final String ON_OFF = "OnOff";
     public static final String LAST_POSITION = "LastPosition"; //This is a catch all for the position of the blinds, dimmer, and the television channel
