@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">FinalProject</string>
+    <string name="house_setting">House Settings</string>
+    <string name="garage">Garahe</string>
+    <string name="houseTemp">Temperatura Ng Bahay</string>
+    <string name="weather">Panahon</string>
+
+    <!-- Garage -->
+
+    <string name="garageDoor">Pinto Ng Garahe</string>
+    <string name="garageLight">Ilaw Ng Garahe</string>
+    <string name="lightOn">Bukas Ang Ilaw</string>
+    <string name="lightOff">Sarado Ang Ilaw</string>
+    <string name="garageBack">Pagbabalik</string>
+    <string name="textOff">Bukas</string>
+    <string name="textOn">Sarado</string>
+
+    <!-- House Temperature  -->
+
+    <string name="houseTempBack">Pagbabalik</string>
+
+    <!-- Weather  -->
+
+    <string name="currentTemp">Kasalukuyang Temperatura</string>
+    <string name="minTemp">Pinakamaliit</string>
+    <string name="maxTemp">Pinakamataas</string>
+
+    <!-- House Settings  -->
+
+    <string name="about">Tungkol Sa</string>
+
+</resources>
