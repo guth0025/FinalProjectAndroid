@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
  Button house;
         Button livingRoom;
         Button kitchen;
+        Button automobile;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -28,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
             kitchen = (Button)findViewById(R.id.smart_kitchen);
             //Launch to HomeActivity
             livingRoom = (Button)findViewById(R.id.homeActivity);
+
+            automobile = (Button)findViewById(R.id.automobile);
+
+            automobile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this,AutomobileMain.class));
+                }
+            });
 
         house = (Button)findViewById(R.id.house_settings);
             livingRoom.setOnClickListener(new View.OnClickListener(){
@@ -79,6 +89,12 @@ house = (Button)findViewById(R.id.house_settings);
         {
             startActivity(new Intent(this,HomeActivity.class));
         }
+
+        else if(id == R.id.automobile)
+        {
+            startActivity(new Intent(this,AutomobileMain.class));
+        }
+
         else if(id == R.id.help_menu)
         {
         }
