@@ -13,7 +13,7 @@ public class HouseTemp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_temp);
 
-        Button button = (Button) findViewById(R.id.houseTemp);
+        Button button = (Button) findViewById(R.id.houseTempBack);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(HouseTemp.this, HouseSettingMain.class);

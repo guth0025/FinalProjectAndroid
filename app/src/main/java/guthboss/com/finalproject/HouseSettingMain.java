@@ -19,15 +19,11 @@ import java.util.ArrayList;
 public class HouseSettingMain extends AppCompatActivity {
 
     ListView settingsList;
-    EditText addSettings;
-    Button addSetButton;
     ArrayList<String> houseSettings = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_house_setting_main);
 
         settingsList = (ListView) findViewById(R.id.settingList);
@@ -35,8 +31,6 @@ public class HouseSettingMain extends AppCompatActivity {
         houseSettings.add("house_setting Temperature");
         houseSettings.add("Weather");
 
-        addSettings = (EditText)findViewById(R.id.newSetting);
-        addSetButton = (Button)findViewById(R.id.addSetting);
         final ArrayAdapter<String> houseSetList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,houseSettings);
         settingsList.setAdapter(houseSetList);
 
@@ -62,15 +56,5 @@ public class HouseSettingMain extends AppCompatActivity {
             }
         });
 
-        addSetButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                houseSettings.add(addSettings.getText().toString());
-                addSettings.setText("");
-                houseSetList.notifyDataSetChanged();
-                Toast.makeText(HouseSettingMain.this, "Added", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 }

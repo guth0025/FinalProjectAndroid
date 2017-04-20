@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,10 +12,12 @@
     tools:context="guthboss.com.finalproject.HouseTemp">
 
     <Button
-        android:text="Return"
+        android:text="@string/houseTempBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/houseTemp" />
+        android:id="@+id/houseTempBack"
+        android:layout_marginTop="440dp"
+        />
 </RelativeLayout>

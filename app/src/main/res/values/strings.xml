@@ -3,10 +3,33 @@
 
     <string name="house_setting">House Settings</string>
     <string name="garage">Garage</string>
-    <string name="houseTemp">House Temparature</string>
+    <string name="houseTemp">House Temperature</string>
     <string name="weather">Weather</string>
+
+    <!-- Garage -->
+
     <string name="garageDoor">Garage Door</string>
     <string name="garageLight">Garage Lights</string>
+
+    <string name="lightOn">On</string>
+    <string name="lightOff">Off</string>
+    <string name="garageBack">Return</string>
+    <string name="textOff">Open</string>
+    <string name="textOn">Close</string>
+
+    <!-- House Temperature  -->
+
+    <string name="houseTempBack">Return</string>
+
+    <!-- Weather  -->
+
+    <string name="currentTemp">Current Temperature</string>
+    <string name="minTemp">Minimum</string>
+    <string name="maxTemp">Maximum</string>
+
+    <!-- House Settings  -->
+
+    <string name="about">About</string>
 
     <string name="add_Item">Add Item</string>
     <string name="add_Text_Hint">Add Item Here...</string>

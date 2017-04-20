@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,31 +11,75 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="guthboss.com.finalproject.Garage">
 
-    <Button
-        android:text="Return"
+
+    <TextView
+        android:id="@+id/garageDoor"
+        android:text="@string/garageDoor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/tb_light"
+        android:layout_alignEnd="@+id/garageLight"
+        />
+
+    <TextView
+        android:id="@+id/garageLight"
+        android:text="@string/garageLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/garage" />
+        />
 
-    <EditText
+    <ImageView
+        android:id="@+id/light_OnOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="numberPassword"
-        android:ems="10"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/garagePass" />
+        android:layout_alignBottom="@+id/tb_light"
+        android:layout_toEndOf="@+id/tb_door"
+        android:layout_alignTop="@+id/garageLight"
+        android:src="@drawable/lightoff"
+        />
 
-    <TextView
-        android:text="Password"
+    <ImageView
+        android:id="@+id/door_OpenClose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/garagePass"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:textSize="20dp"
-        android:id="@+id/garagePassInput" />
+        android:layout_alignBottom="@+id/tb_door"
+        android:layout_alignEnd="@+id/light_OnOff"
+        android:layout_alignTop="@+id/garageDoor"
+        android:layout_toEndOf="@+id/tb_door"
+        android:src="@drawable/doorclose"
+        />
+
+    <ToggleButton
+        android:id="@+id/tb_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="light_click"
+        android:textOff="@string/lightOn"
+        android:textOn="@string/lightOff"
+        android:layout_below="@+id/garageLight"
+        android:layout_alignStart="@+id/garageLight"
+        />
+
+    <Button
+        android:text="@string/garageBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/garageBack"
+        android:layout_below="@+id/tb_door"
+        android:layout_marginTop="270dp"
+        />
+
+    <ToggleButton
+        android:id="@+id/tb_door"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="door_click"
+        android:textOff="@string/textOff"
+        android:textOn="@string/textOn"
+        android:layout_below="@+id/garageDoor"
+        android:layout_alignEnd="@+id/garageDoor" />
 
 </RelativeLayout>

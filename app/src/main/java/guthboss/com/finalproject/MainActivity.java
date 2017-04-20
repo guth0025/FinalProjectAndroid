@@ -3,6 +3,7 @@ package guthboss.com.finalproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             //Launch to HomeActivity
             livingRoom = (Button)findViewById(R.id.homeActivity);
 
+        house = (Button)findViewById(R.id.house_settings);
             livingRoom.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
@@ -79,7 +81,6 @@ house = (Button)findViewById(R.id.house_settings);
         }
         else if(id == R.id.help_menu)
         {
-            //TODO FILL OUT HELP
         }
 
         return super.onOptionsItemSelected(item);
