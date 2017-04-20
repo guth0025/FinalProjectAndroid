@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="guthboss.com.finalproject.Microwave">
+    <include android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"/>
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+
+        android:lineSpacingExtra="24sp"
+        android:text="NAME"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:typeface="normal"
+
+        />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TIME LEFT"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="50sp"
+        android:textStyle="bold"
+
+        />
+
+    <ProgressBar
+        android:id="@+id/progress_counter"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:elevation="0dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/cook_time"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:elevation="1dp"
+        android:text="0"
+        android:textAlignment="viewEnd"
+        android:textAllCaps="true"
+        android:textSize="90sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/enter_cook_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter Time"
+        android:inputType="number"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/cook_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COOK" />
+
+    <Button
+        android:id="@+id/microwave_stop_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STOP" />
+
+    <Button
+        android:id="@+id/microwave_reset_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RESET" />
+
+</LinearLayout>

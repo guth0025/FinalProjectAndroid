@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="guthboss.com.finalproject">
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +24,46 @@
         <activity android:name=".HouseSettingMain" />
         <activity android:name=".Garage" />
         <activity android:name=".HouseTemp" />
-        <activity android:name=".Weather"></activity>
+        <activity android:name=".Weather" />
+        <activity
+            android:name=".Smart_Kitchen"
+            android:label="Smart Kitchen" />
+        <activity
+            android:name=".HomeActivity"
+            android:label="Home Activity" />
+        <activity
+            android:name=".Lamp1"
+            android:label="Lamp 1" />
+        <activity
+            android:name=".Lamp2"
+            android:label="Lamp 2" />
+        <activity
+            android:name=".Lamp3"
+            android:label="Lamp 3" />
+        <activity
+            android:name=".Television"
+            android:label="Television" />
+        <activity
+            android:name=".Blinds"
+            android:label="Blinds" />
+        <activity
+            android:name=".Fridge"
+            android:label="Fridge" />
+        <activity
+            android:name=".Freezer"
+            android:label="Freezer" />
+        <activity
+            android:name=".Microwave"
+            android:label="Microwave" />
+        <activity
+            android:name=".MainKitchenLight"
+            android:label="Kitchen Light" />
+        <activity android:name=".LivingRoomDetails" />
+        <activity android:name=".LivingRoomHelp"/>
+        <activity android:name=".AddKitchenItem"/>
+
+
+
     </application>
 
 </manifest>
