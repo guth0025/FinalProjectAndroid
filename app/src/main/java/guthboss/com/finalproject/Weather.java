@@ -246,5 +246,3 @@ public class Weather extends AppCompatActivity {
 
 
 }
-
-
