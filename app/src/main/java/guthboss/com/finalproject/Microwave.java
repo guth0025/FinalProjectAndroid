@@ -125,6 +125,7 @@ public class Microwave extends AppCompatActivity {
                     timer.cancel(true);
                     cookTime.setText("0");
                     stopTime = null;
+                    progBar.setProgress(0);
                     Toast.makeText(Microwave.this,"Reset",Toast.LENGTH_SHORT).show();
                 }
 

@@ -6,7 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,13 +26,12 @@ import java.util.ArrayList;
 public class Smart_Kitchen extends AppCompatActivity {
     ListView mainList;
     ArrayList<String> kitchenAppliances = new ArrayList<String>();
-
     Button addButton;
     DatabaseHelper db;
     SQLiteDatabase writeableDB;
     Cursor cursor;
     ArrayAdapter<String> kitchList;
-
+    Boolean undo = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,32 +51,7 @@ public class Smart_Kitchen extends AppCompatActivity {
 
         cursor = writeableDB.rawQuery("SELECT * FROM KitchenTable;",null);//Cursor uses this query to retrive data from db
 
-        if(cursor != null && cursor.moveToFirst()) {//Run through Kitchen Table and add all to ArrayList
-
-            do {
-
-                int id = cursor.getInt(0);
-
-                String type = cursor.getString(1);//get message field
-
-                String name = cursor.getString(2);
-
-                if(type != null)
-
-                kitchenAppliances.add(name);
-
-
-                Log.i("ID",String.valueOf(id));
-                Log.i("space","");
-                Log.i("Type ",type);
-                Log.i("space","");
-                Log.i("Name ", name);
-                Log.i("space","");
-
-            }while (cursor.moveToNext());
-
-        }
-
+        addDatabaseToArray();
 
         kitchList = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, kitchenAppliances);//Add array list to list view
 
@@ -97,16 +73,50 @@ public class Smart_Kitchen extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Smart_Kitchen.this);
+
+
+
+
+
+
+                Snackbar.make(findViewById(android.R.id.content), "Removing "+kitchenAppliances.get(position), Snackbar.LENGTH_LONG)
+                        .setAction("Undo", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                undo = true;
+                                Toast.makeText(Smart_Kitchen.this, "Delete Undo", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setActionTextColor(Color.RED).addCallback(new Snackbar.Callback()
+                         {
+
+                             @Override
+                             public void onDismissed(Snackbar snackbar, int event) {
+
+                                if(!undo)
+                                {
+                                    writeableDB.execSQL("DELETE FROM "+DatabaseHelper.KITCHEN_TABLE+" WHERE "+DatabaseHelper.KITCHEN_NAME+" = '" + kitchenAppliances.get(position) + "'");
+                                    kitchenAppliances.remove(position);
+                                    kitchList.notifyDataSetChanged();
+                                    Toast.makeText(Smart_Kitchen.this,"Removed", Toast.LENGTH_LONG).show();
+                                }
+                                else
+                                    {
+                                        undo = false;
+                                    }
+
+                             }
+
+                            }).show();
+
+
+               /* AlertDialog.Builder builder = new AlertDialog.Builder(Smart_Kitchen.this);
                 builder.setMessage("Would you like to delete "+kitchenAppliances.get(position)+"?").setTitle("Delete?")
                         .setPositiveButton("OK",new DialogInterface.OnClickListener()
                         {
                             public void onClick(DialogInterface dialog, int id)
                             {
-                                writeableDB.execSQL("DELETE FROM "+DatabaseHelper.KITCHEN_TABLE+" WHERE "+DatabaseHelper.KITCHEN_NAME+" = '" + kitchenAppliances.get(position) + "'");
-                                Toast.makeText(Smart_Kitchen.this,kitchenAppliances.get(position)+" Deleted", Toast.LENGTH_LONG).show();
-                                kitchenAppliances.remove(position);
-                                kitchList.notifyDataSetChanged();
+
 
 
                             }
@@ -120,7 +130,7 @@ public class Smart_Kitchen extends AppCompatActivity {
                                 }
 
 
-                ).show();
+                ).show();*/
 
                 return true;
             }
@@ -141,6 +151,11 @@ public class Smart_Kitchen extends AppCompatActivity {
 
     }
 
+
+    /**
+     * getType() Takes content of kitchenAppliances ArrayList at a given position and finds the corresponding data in the Database
+     * @param idPosition
+     */
     public void getType(String idPosition) {//Checks which type list item is and sends you to correct activity
         cursor = writeableDB.rawQuery("SELECT * FROM KitchenTable;",null);//Cursor uses this query to retrive data from db
         Intent intent;
@@ -228,11 +243,11 @@ public class Smart_Kitchen extends AppCompatActivity {
 
 
                 Log.i("ID",String.valueOf(id));
-                Log.i("","");
+                Log.i("Space","Space");
                 Log.i("Type ",type);
-                Log.i("","");
+                Log.i("Space","Space");
                 Log.i("Name ", name);
-                Log.i("","");
+                Log.i("Space","Space");
             }while (cursor.moveToNext());
 
         }
@@ -336,6 +351,37 @@ public class Smart_Kitchen extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    public void addDatabaseToArray()
+    {
+        if(cursor != null && cursor.moveToFirst()) {//Run through Kitchen Table and add all to ArrayList
+
+            do {
+
+                int id = cursor.getInt(0);
+
+                String type = cursor.getString(1);//get message field
+
+                String name = cursor.getString(2);
+
+                if(type != null)
+
+                    kitchenAppliances.add(name);
+
+
+                Log.i("ID",String.valueOf(id));
+                Log.i("space","");
+                Log.i("Type ",type);
+                Log.i("space","");
+                Log.i("Name ", name);
+                Log.i("space","");
+
+            }while (cursor.moveToNext());
+
+        }
     }
 
 
