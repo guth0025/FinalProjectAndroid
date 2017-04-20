@@ -3,33 +3,10 @@
 
     <string name="house_setting">House Settings</string>
     <string name="garage">Garage</string>
-    <string name="houseTemp">House Temperature</string>
+    <string name="houseTemp">House Temparature</string>
     <string name="weather">Weather</string>
-
-    <!-- Garage -->
-
     <string name="garageDoor">Garage Door</string>
     <string name="garageLight">Garage Lights</string>
-
-    <string name="lightOn">On</string>
-    <string name="lightOff">Off</string>
-    <string name="garageBack">Return</string>
-    <string name="textOff">Open</string>
-    <string name="textOn">Close</string>
-
-    <!-- House Temperature  -->
-
-    <string name="houseTempBack">Return</string>
-
-    <!-- Weather  -->
-
-    <string name="currentTemp">Current Temperature</string>
-    <string name="minTemp">Minimum</string>
-    <string name="maxTemp">Maximum</string>
-
-    <!-- House Settings  -->
-
-    <string name="about">About</string>
 
     <string name="add_Item">Add Item</string>
     <string name="add_Text_Hint">Add Item Here...</string>
@@ -47,10 +24,7 @@
     <string name="Television_onOff">Turn Television on/off</string>
     <string name="cancel">Cancel</string>
     <string name="delete">Delete</string>
-    <string name="autoMute">Mute</string>
-    <string name="autoSubmit">Submit</string>
-    <string name="autoSuccessful">The submit was successful!</string>
-    <string-array name="colours">
+    <string-array name="colors">
         <item>Red</item>
         <item>Blue</item>
         <item>Yellow</item>
