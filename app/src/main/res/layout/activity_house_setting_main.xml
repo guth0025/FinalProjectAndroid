@@ -13,15 +13,12 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
         android:id="@+id/imageView"
-=======
+
         android:inputType="textPersonName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/addSetting"
->>>>>>> ea36cb1bfd2823ef3cce25dd339d109b741e06fd
         />
 
     <ListView

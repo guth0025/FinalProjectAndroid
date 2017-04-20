@@ -10,7 +10,7 @@
 
     <string name="garageDoor">Garage Door</string>
     <string name="garageLight">Garage Lights</string>
-<<<<<<< HEAD
+
     <string name="lightOn">On</string>
     <string name="lightOff">Off</string>
     <string name="garageBack">Return</string>
@@ -30,7 +30,6 @@
     <!-- House Settings  -->
 
     <string name="about">About</string>
-=======
 
     <string name="add_Item">Add Item</string>
     <string name="add_Text_Hint">Add Item Here...</string>
@@ -64,6 +63,5 @@
         <item>Light</item>
 
     </string-array>
->>>>>>> ea36cb1bfd2823ef3cce25dd339d109b741e06fd
 
 </resources>

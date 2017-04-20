@@ -3,13 +3,11 @@ package guthboss.com.finalproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-<<<<<<< HEAD
-=======
+
 import android.support.v7.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
->>>>>>> ea36cb1bfd2823ef3cce25dd339d109b741e06fd
 import android.view.View;
 import android.widget.Button;
 
@@ -31,9 +29,7 @@ public class MainActivity extends AppCompatActivity {
             //Launch to HomeActivity
             livingRoom = (Button)findViewById(R.id.homeActivity);
 
-<<<<<<< HEAD
         house = (Button)findViewById(R.id.house_settings);
-=======
             livingRoom.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
@@ -48,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 house = (Button)findViewById(R.id.house_settings);
->>>>>>> ea36cb1bfd2823ef3cce25dd339d109b741e06fd
 
         house.setOnClickListener(new View.OnClickListener() {
             @Override
