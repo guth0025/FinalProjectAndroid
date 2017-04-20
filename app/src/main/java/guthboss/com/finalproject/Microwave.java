@@ -84,7 +84,7 @@ public class Microwave extends AppCompatActivity {
                         {
                             timer = new MicrowaveTimer();
                             Log.i("StopTime: ",stopTime);
-                            progBar.setMax(Integer.parseInt(stopTime));
+                            progBar.setProgress(Integer.parseInt(stopTime));
                             timer.execute(stopTime);
                         }
                         else if(Integer.parseInt(enterCookTime.getText().toString()) >= 0 )
